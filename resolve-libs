@@ -1,0 +1,83 @@
+#!/bin/bash
+# Author: Ivan Perez - Keera Studios (c) 2014
+declare -A all_deps
+declare -a all_libs
+pending=0
+
+GHC_PKG=$1
+shift
+
+function add_lib {
+    if [ "${all_deps[$1]}" == "" ] ; then
+       if [ "$1" != "builtin_rts" ] ; then
+         all_deps[$1]='0';
+         ((pending+=1))
+       else
+         all_deps['rts']='1';
+       fi
+    fi
+}
+
+function add_top {
+  var=$($GHC_PKG --simple-output field $1 id | awk '{gsub("-[^-]+$"," "); print $0 ; }')
+  add_lib $var
+}
+
+function list_deps {
+  # One less dep
+  ((pending-=1))
+  all_deps[$1]='1';
+
+  # Find deps
+  var=($($GHC_PKG --simple-output field $1 depends | awk '{gsub("-[^-]+( |$)"," ");print $0 ; }'))
+
+  # Add to array
+  for i in "${var[@]}"
+  do
+    add_lib $i
+  done
+}
+
+function next_lib {
+  for i in "${!all_deps[@]}"
+  do
+    if [ "${all_deps[$i]}" == "0" ]; then
+       echo $i;
+       break;
+    fi
+  done
+}
+
+function find_lib {
+  path=$($GHC_PKG --simple-output field $1 library-dirs | awk '{print $1}')
+  libs=($($GHC_PKG --simple-output field $1 hs-libraries))
+  for lib in "${libs[@]}"
+  do
+    all_libs+=("$path/lib$lib.a")
+  done
+}
+
+function find_all_libs {
+  for i in "${!all_deps[@]}"
+  do
+    find_lib $i
+  done
+}
+
+add_top "$1"
+while [ "$pending" != "0" ]; do
+  lib=$(next_lib)
+  if [[ "$lib" == "" ]]; then
+     echo "Error"
+     break
+  else
+     list_deps $lib
+  fi
+done
+  
+find_all_libs
+
+for i in "${all_libs[@]}"
+do
+echo $i # ${all_deps[$i]}
+done

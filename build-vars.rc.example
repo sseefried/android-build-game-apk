@@ -1,0 +1,14 @@
+#
+# Path to Epidemic game repo
+#
+EPIDEMIC_REPO=$HOME/build/open-epidemic-game
+
+#
+# Path to Android NDK
+#
+NDK=$HOME/android-ndk-r9b
+
+#
+# Path to directory containing required static C libraries of Epidemic.
+#
+EPIDEMIC_C_LIB_DIR=$HOME/.ghc/android-14/arm-linux-androideabi-4.8/sysroot/usr/lib
