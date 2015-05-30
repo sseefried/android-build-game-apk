@@ -3,7 +3,7 @@
 ## Introduction
 
 [Epidemic](https://github.com/sseefried/open-epidemic-game) is a game written for mobile
-devices in Haskell. Want to help beta test? Please [subscribe](http://eepurl.com/boW1vz).
+devices in Haskell. (Want to help beta test? Please [subscribe](http://eepurl.com/boW1vz).)
 
 This repo contains a script called `build-epidemic-apk.sh` to build the game for Android
 devices using ARMv7 (or compatible) chipsets. The repo contains a thin Java wrapper that
@@ -47,3 +47,4 @@ You can install this file on your Android device with [`adb`](http://developer.a
     adb install -r com.declarative.games.epidemic.beta-debug.apk
 
 On your device you will need to tick "Unknown Sources" in "Settings -> Security".
+
