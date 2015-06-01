@@ -33,7 +33,13 @@ If you have used the `Dockerfile` in the repo
 [`docker-epidemic-build-env`](https://github.com/sseefried/docker-epidemic-build-env.git)
 (mentioned above), then you can just
 
-    cp build-vars.rc.example build-vars.rc
+    $ cp build-vars.rc.example build-vars.rc
+
+## Build
+
+Now you can build it:
+
+    $ ./build-android-apk.sh
 
 
 ## Installing the APK on Android devices
