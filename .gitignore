@@ -9,3 +9,4 @@ gen/
 jni/game-libs/armeabi/
 libhaskell_game.a
 libs/
+res/values
