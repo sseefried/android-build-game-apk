@@ -3,10 +3,13 @@
 THIS_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 ####################################################################################################
 
-cd $THIS_DIR
-for i in `find . -name '*.j2'`; do
-  j2 "$i" config.json > "$(dirname $i)/$(basename $i .j2)"
+cd "$THIS_DIR/jinja2-templates"
+for i in $(find . -name '*.j2'); do
+  j2 "$i" $THIS_DIR/config.json > "$THIS_DIR/$(dirname $i)/$(basename $i .j2)"
 done
+
+cd $THIS_DIR
+
 ####################################################################################################
 
 source build-vars.rc
@@ -72,11 +75,10 @@ else
 fi
 
 LIBS=`$THIS_DIR/resolve-libs arm-unknown-linux-androideabi-ghc-pkg $HASKELL_PACKAGE`
-ar crsT libhaskell_game.a $LIBS
+rm -f libhaskell_game.a && ar crsT libhaskell_game.a $LIBS
 
 TGT=jni/game-libs/armeabi
-rm -rf $TGT
-mkdir -p $TGT
+rm -rf $TGT && mkdir -p $TGT
 
 
 for i in $GAME_C_LIBS; do
