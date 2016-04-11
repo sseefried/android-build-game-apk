@@ -1,3 +1,11 @@
 build-vars.rc
 bin/
 obj/
+src/Activity.java
+AndroidManifest.xml
+build.xml
+config.json
+gen/
+jni/game-libs/armeabi/
+libhaskell_game.a
+libs/

@@ -24,7 +24,7 @@ LOCAL_LDFLAGS += -Wl,--export-dynamic
 LOCAL_LDLIBS := -L$(LOCAL_PATH)/$(TARGET_ARCH_ABI) \
  -Wl,--start-group \
  -llog \
- -landroid_helm_test \
+ -lhaskell_game \
  -lSDL2_mixer \
  -lSDL2 \
  -landroid \

@@ -1,0 +1,8 @@
+{
+  "repo": "/home/androidbuilder/code/android-helm-test",
+  "haskell_package": "android-helm-test",
+  "package": "com.test.game",
+  "version": { "code": "1", "name": "Build 1" },
+  "build_type": "debug",
+  "assets_dir": null
+}
