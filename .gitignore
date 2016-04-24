@@ -1,3 +1,4 @@
+*~
 build-vars.rc
 bin/
 obj/
@@ -10,3 +11,9 @@ jni/game-libs/armeabi/
 libhaskell_game.a
 libs/
 res/values
+assets/
+res/drawable-hdpi/
+res/drawable-mdpi/
+res/drawable-xhdpi/
+res/drawable-xxhdpi/
+
