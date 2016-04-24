@@ -75,6 +75,11 @@ while [ "$pending" != "0" ]; do
   fi
 done
   
+# Check that package can be found
+$GHC_PKG --simple-output field $1 library-dirs > /dev/null 2>&1
+[ $? -eq 0 ] || exit 1
+
+# Now find libraries
 find_all_libs
 
 for i in "${all_libs[@]}"
