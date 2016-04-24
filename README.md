@@ -33,11 +33,13 @@ The game repo must satisfy a few requirements.
    GHC FFI (Foreign Function Interface). It must have the type `CString -> IO ()`
    An example appears below:
 
-    foreign export ccall "haskell_main" main :: CString -> IO ()
+```Haskell
+foreign export ccall "haskell_main" main :: CString -> IO ()
 
-    main :: CString -> IO ()
-    main cstr = do
-	  ... code ...
+main :: CString -> IO ()
+main cstr = do
+  ... code ...
+```
 	  
 The `CString` passed in is the path to the assets directory (if your game
 uses any assets).
