@@ -5,6 +5,7 @@ THIS_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 cd "$THIS_DIR/jinja2-templates"
 for i in $(find . -name '*.j2'); do
+  mkdir -p $THIS_DIR/$(dirname $i)
   j2 "$i" $THIS_DIR/config.json > "$THIS_DIR/$(dirname $i)/$(basename $i .j2)"
 done
 
@@ -65,7 +66,6 @@ $CABAL install -fandroid $@
 [ $? -eq 0 ] || exit 1
 
 cd $THIS_DIR
-
 if [ "$ASSETS_DIR" != "" -a "$ASSETS_DIR" != "None" ]; then
   echo "[+] Copy across assets (if any)"
   mkdir -p assets
@@ -93,6 +93,7 @@ else
 fi
 
 LIBS=`$THIS_DIR/resolve-libs arm-unknown-linux-androideabi-ghc-pkg $HASKELL_PACKAGE`
+[ $? -eq 0 ] || exit 1
 rm -f libhaskell_game.a && ar crsT libhaskell_game.a $LIBS
 
 TGT=jni/game-libs/armeabi
