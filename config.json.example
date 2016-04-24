@@ -4,6 +4,7 @@
   "title": "Helm Test",
   "package": "com.test.game",
   "version": { "code": "1", "name": "Build 1" },
+  "orientation": "landscape",  
   "build_type": "debug",
   "assets_dir": null,
   "icons_dir": null
