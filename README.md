@@ -12,7 +12,7 @@ This won't just work out of the box. You will require a GHC cross compiler targe
 ARMv7 and will need to build all the associated libraries. This isn't straightforward at all!
 
 However, I've done all the work for you with the help of Docker. Please see the repo
-[`docker-build-game-env`](https://github.com/sseefried/docker-build-game-env.git)
+[`docker-game-build-env`](https://github.com/sseefried/docker-game-build-env)
 for more details.
 
 Once you have created the Docker container and followed its instructions
@@ -102,5 +102,5 @@ You can install this file on your Android device with [`adb`](http://developer.a
 
 You must do this from the host machine not the running Docker container.
 See instructions in
-[docker-build-game-env](https://github.com/sseefried/docker-build-game-env)
+[docker-game-build-env](https://github.com/sseefried/docker-game-build-env)
 for more information.
