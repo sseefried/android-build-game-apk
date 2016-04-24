@@ -74,12 +74,29 @@ else
   rm -rf assets
 fi
 
+#
+# Remove icons
+#
+for typ in mdpi hdpi xhdpi xxhdpi; do
+  rm -rf res/drawable-$typ
+done
+
+if [ "$ICONS_DIR" != "" -a "$ICONS_DIR" != "None" ]; then
+  for typ in mdpi hdpi xhdpi xxhdpi; do
+    if [ -d "$ICONS_DIR/drawable-$typ" ]; then
+      cp -r "$ICONS_DIR/drawable-$typ" res
+    fi
+  done
+else
+  mkdir -p res/drawable-xxhdpi
+  cp lambda-icon.png res/drawable-xxhdpi/ic_launcher.png
+fi
+
 LIBS=`$THIS_DIR/resolve-libs arm-unknown-linux-androideabi-ghc-pkg $HASKELL_PACKAGE`
 rm -f libhaskell_game.a && ar crsT libhaskell_game.a $LIBS
 
 TGT=jni/game-libs/armeabi
 rm -rf $TGT && mkdir -p $TGT
-
 
 for i in $GAME_C_LIBS; do
   cp $GAME_C_LIB_DIR/lib$i.a $TGT || exit 1
